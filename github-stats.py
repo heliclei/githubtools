@@ -10,13 +10,24 @@ user_stats={"dummy":{"additions":0,"deletions":0,"total":0}}
 payload = {'since':'2013-01-01T00:00:00Z','until':'2014-01-01T00:00:00Z','access_token':'ced10145d50db9421512d1f7d92cd199caaeb280'}
 token = {'access_token':'ced10145d50db9421512d1f7d92cd199caaeb280'}
 
+def is_merge(commit_sha):
+	cmd = "git show --oneline " + commit_sha
+	output = os.popen(cmd)
+	title = output.read()
+	p_merge = re.compile("Merge")
+	if(p_merge.search(title) is not None):
+		return True
+	else:
+		return False
+
 def collect_stats(commit_list):
 	for m in commit_list:
 		#print user_stats
 		#print m['sha']
 
 		#print data
-
+		if(is_merge(m['sha'])):
+			continue
 		git_show_command = "git show -s --format=%an " + m['sha']
 		
 		output = os.popen(git_show_command)
@@ -71,7 +82,7 @@ def collect_stats(commit_list):
 		  new_stat = {'additions':ins_data, 'deletions':del_data, 'total':ins_data+del_data}
 		  user_stats[user] = new_stat
 
-r = requests.get("https://api.github.com/repos/cocos2d/cocos2d-x/commits", params = payload)
+r = requests.get("https://api.github.com/repos/cocos2d-x/ironman/commits", params = payload)
 collect_stats(r.json())
 #print commit_list
 #commit_request_api = "https://api.github.com/repos/cocos2d/cocos2d-x/commits/"
