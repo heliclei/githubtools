@@ -1,3 +1,6 @@
+
+#copy this script to your target repo
+#run python github-stats.py to collect data
 import requests
 import re
 import json
