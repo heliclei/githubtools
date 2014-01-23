@@ -1,17 +1,19 @@
 
 #copy this script to your target repo
 #run python github-stats.py to collect data
-import requests
 import re
 import json
 import os
 import sys
+import requests
 
-#user_stats = ''
+#get token from cmd line
+tk = sys.argv[1]
+
 user_stats={"dummy":{"additions":0,"deletions":0,"total":0}}
 #query github api for last year's commits
-payload = {'since':'2013-01-01T00:00:00Z','until':'2014-01-01T00:00:00Z','access_token':'ced10145d50db9421512d1f7d92cd199caaeb280'}
-token = {'access_token':'ced10145d50db9421512d1f7d92cd199caaeb280'}
+payload = {'since':'2013-01-01T00:00:00Z','until':'2014-01-01T00:00:00Z','access_token':tk}
+token = {'access_token':tk}
 
 def is_merge(commit_sha):
 	cmd = "git show --oneline " + commit_sha
@@ -85,7 +87,7 @@ def collect_stats(commit_list):
 		  new_stat = {'additions':ins_data, 'deletions':del_data, 'total':ins_data+del_data}
 		  user_stats[user] = new_stat
 
-r = requests.get("https://api.github.com/repos/cocos2d-x/ironman/commits", params = payload)
+r = requests.get("https://api.github.com/repos/heliclei/githubtools/commits", params = payload)
 collect_stats(r.json())
 #print commit_list
 #commit_request_api = "https://api.github.com/repos/cocos2d/cocos2d-x/commits/"
