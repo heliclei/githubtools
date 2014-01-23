@@ -89,9 +89,7 @@ def collect_stats(commit_list):
 
 r = requests.get("https://api.github.com/repos/cocos2d/cocos2d-x/commits", params = payload)
 collect_stats(r.json())
-#print commit_list
-#commit_request_api = "https://api.github.com/repos/cocos2d/cocos2d-x/commits/"
-#token = {'access_token':'ced10145d50db9421512d1f7d92cd199caaeb280'}
+
 print user_stats
 
 pattern = re.compile("<(\S+)>; rel=\"next\"")
