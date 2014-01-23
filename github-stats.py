@@ -87,7 +87,7 @@ def collect_stats(commit_list):
 		  new_stat = {'additions':ins_data, 'deletions':del_data, 'total':ins_data+del_data}
 		  user_stats[user] = new_stat
 
-r = requests.get("https://api.github.com/repos/heliclei/githubtools/commits", params = payload)
+r = requests.get("https://api.github.com/repos/cocos2d/cocos2d-x/commits", params = payload)
 collect_stats(r.json())
 #print commit_list
 #commit_request_api = "https://api.github.com/repos/cocos2d/cocos2d-x/commits/"
