@@ -1,0 +1,1 @@
+curl https://api.github.com/repos/cocos2d/cocos2d-x/hooks/1638748?access_token=ced10145d50db9421512d1f7d92cd199caaeb280 -X PATCH --data '{"config": {"url": "http://115.28.134.83:8000/job/cocos-2dx-pull-request-build-trigger/buildWithParameters?token=ced10145d50db9421512d1f7d92cd199caaeb280","content_type": "form","insecure_ssl": "1"}}'

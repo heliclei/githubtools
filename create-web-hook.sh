@@ -1,0 +1,1 @@
+curl https://api.github.com/repos/HelloJenkins/cocos2d-x/hooks?access_token=3d46bbf2c6c914c6f032bae2df29e452e1914064 -X POST --data '{"name":"web","active":true,"events":["pull_request"],"config":{"url":"http://115.28.134.83/job/HelloJenkins-Trigger/buildWithParameters?token=331c4f4de07dc0b4c6fe9cd5e626cb3ec0caba01","content_type":"form","inscure_ssl":"1"}}'
